@@ -1,16 +1,16 @@
 DetectHiddenWindows, On
 
-SPI_SETDEFAULTINPUTLANG = 0x5A ; команда назначения языка по умолчанию
-LangRU = 419 ; константа для русского языка
-LangEN = 409 ; константа для английского языка
+SPI_SETDEFAULTINPUTLANG = 0x5A ; РєРѕРјР°РЅРґР° РЅР°Р·РЅР°С‡РµРЅРёСЏ СЏР·С‹РєР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+LangRU = 419 ; РєРѕРЅСЃС‚Р°РЅС‚Р° РґР»СЏ СЂСѓСЃСЃРєРѕРіРѕ СЏР·С‹РєР°
+LangEN = 409 ; РєРѕРЅСЃС‚Р°РЅС‚Р° РґР»СЏ Р°РЅРіР»РёР№СЃРєРѕРіРѕ СЏР·С‹РєР°
 
-RegRead, Preload_Lang_1, HKEY_CURRENT_USER, Keyboard Layout\Preload, 1 ; прочитать какая первая раскладка (по умолчанию)
-If Preload_Lang_1 = %LangRU% ; если русская, то...
+RegRead, Preload_Lang_1, HKEY_CURRENT_USER, Keyboard Layout\Preload, 1 ; РїСЂРѕС‡РёС‚Р°С‚СЊ РєР°РєР°СЏ РїРµСЂРІР°СЏ СЂР°СЃРєР»Р°РґРєР° (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ)
+If Preload_Lang_1 = %LangRU% ; РµСЃР»Рё СЂСѓСЃСЃРєР°СЏ, С‚Рѕ...
 {
-    MsgBox, 0, Внимание., Текущий язык ввода по умолчанию - русский.`n Для корректной работы необходимо сменить на английский.
+    MsgBox, 0, Р’РЅРёРјР°РЅРёРµ., РўРµРєСѓС‰РёР№ СЏР·С‹Рє РІРІРѕРґР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ - СЂСѓСЃСЃРєРёР№.`n Р”Р»СЏ РєРѕСЂСЂРµРєС‚РЅРѕР№ СЂР°Р±РѕС‚С‹ РЅРµРѕР±С…РѕРґРёРјРѕ СЃРјРµРЅРёС‚СЊ РЅР° Р°РЅРіР»РёР№СЃРєРёР№.
 ;    DllCall( "SystemParametersInfo", UInt, SPI_SETDEFAULTINPUTLANG, UInt, 0, UInt, 4090 . LangEN, UInt, 4)
-;    RegWrite, REG_SZ, HKCU, Keyboard Layout\Preload , 1, 00000%LangEN% ; пишем английскую раскладку в реестр
-;    RegWrite, REG_SZ, HKCU, Keyboard Layout\Preload , 2, 00000%LangRU% ; пишем русскую раскладку в реестр
+;    RegWrite, REG_SZ, HKCU, Keyboard Layout\Preload , 1, 00000%LangEN% ; РїРёС€РµРј Р°РЅРіР»РёР№СЃРєСѓСЋ СЂР°СЃРєР»Р°РґРєСѓ РІ СЂРµРµСЃС‚СЂ
+;    RegWrite, REG_SZ, HKCU, Keyboard Layout\Preload , 2, 00000%LangRU% ; РїРёС€РµРј СЂСѓСЃСЃРєСѓСЋ СЂР°СЃРєР»Р°РґРєСѓ РІ СЂРµРµСЃС‚СЂ
 }
 
 
@@ -34,78 +34,78 @@ FormatTime, CurrentDateTime,, M/d/yyyy h:mm tt
 Process, Priority, , High
 ;FileAppend, `n%CurrentDateTime%`n, %file%
 FileAppend, `n, %file%
-Menu, HelpMenu, Add, &Справка HotKey	F1, MyL02
-Menu, HelpMenu, Add, &О программе, MenuHandler
-Menu, MyMenuBar, Add, &Настройки, SettingMenu
-Menu, MyMenuBar, Add, &Справка, :HelpMenu
-Menu, MyMenuBar2, Add, &Открыть, FileOpen
-Menu, MyMenuBar2, Add, &Настройки, SettingMenu
-Menu, MyMenuBar2, Add, &Справка, :HelpMenu
+Menu, HelpMenu, Add, &РЎРїСЂР°РІРєР° HotKey	F1, MyL02
+Menu, HelpMenu, Add, &Рћ РїСЂРѕРіСЂР°РјРјРµ, MenuHandler
+Menu, MyMenuBar, Add, &РќР°СЃС‚СЂРѕР№РєРё, SettingMenu
+Menu, MyMenuBar, Add, &РЎРїСЂР°РІРєР°, :HelpMenu
+Menu, MyMenuBar2, Add, &РћС‚РєСЂС‹С‚СЊ, FileOpen
+Menu, MyMenuBar2, Add, &РќР°СЃС‚СЂРѕР№РєРё, SettingMenu
+Menu, MyMenuBar2, Add, &РЎРїСЂР°РІРєР°, :HelpMenu
 
-TrayTip, ,Для начала работы нажмите F9
+TrayTip, ,Р”Р»СЏ РЅР°С‡Р°Р»Р° СЂР°Р±РѕС‚С‹ РЅР°Р¶РјРёС‚Рµ F9
 SetTimer, RemoveTrayTip, 20000
 
 help=
 (
-F9	    Открытие заявки
+F9	    РћС‚РєСЂС‹С‚РёРµ Р·Р°СЏРІРєРё
 
-F8	    Открытие списка заявок
+F8	    РћС‚РєСЂС‹С‚РёРµ СЃРїРёСЃРєР° Р·Р°СЏРІРѕРє
 
-Ctrl+s	    Сохранение номера заявки с комментарием в файле
+Ctrl+s	    РЎРѕС…СЂР°РЅРµРЅРёРµ РЅРѕРјРµСЂР° Р·Р°СЏРІРєРё СЃ РєРѕРјРјРµРЅС‚Р°СЂРёРµРј РІ С„Р°Р№Р»Рµ
 
-Ctrl+p	    Вход в почту
+Ctrl+p	    Р’С…РѕРґ РІ РїРѕС‡С‚Сѓ
 
-Ctrl+f	    Поиск в cmd и в crt
+Ctrl+f	    РџРѕРёСЃРє РІ cmd Рё РІ crt
 
-Alt+b	    Вход на брабус
+Alt+b	    Р’С…РѕРґ РЅР° Р±СЂР°Р±СѓСЃ
 
-Ctrl+1	    Вставка логин/пароль на оборудование Alcatel, Dlink(в консоли, SecureCRT)
+Ctrl+1	    Р’СЃС‚Р°РІРєР° Р»РѕРіРёРЅ/РїР°СЂРѕР»СЊ РЅР° РѕР±РѕСЂСѓРґРѕРІР°РЅРёРµ Alcatel, Dlink(РІ РєРѕРЅСЃРѕР»Рё, SecureCRT)
 
-Ctrl+2	    Вставка логин/пароль на оборудование Cisco(в консоли, SecureCRT)
+Ctrl+2	    Р’СЃС‚Р°РІРєР° Р»РѕРіРёРЅ/РїР°СЂРѕР»СЊ РЅР° РѕР±РѕСЂСѓРґРѕРІР°РЅРёРµ Cisco(РІ РєРѕРЅСЃРѕР»Рё, SecureCRT)
 
-Alt+m	    Запуск выполнения команд на d-linkе, alcatel(в консоли, SecureCRT)
+Alt+m	    Р—Р°РїСѓСЃРє РІС‹РїРѕР»РЅРµРЅРёСЏ РєРѕРјР°РЅРґ РЅР° d-linkРµ, alcatel(РІ РєРѕРЅСЃРѕР»Рё, SecureCRT)
 
-Ctrl+v	    В активном окне оранджа - преобразование адреса клиента с hlpdeska в формат оранджа(в поиске оранджа).
-	    (Нужно предварительно скопировать адрес c hlpdeska)
+Ctrl+v	    Р’ Р°РєС‚РёРІРЅРѕРј РѕРєРЅРµ РѕСЂР°РЅРґР¶Р° - РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Р°РґСЂРµСЃР° РєР»РёРµРЅС‚Р° СЃ hlpdeska РІ С„РѕСЂРјР°С‚ РѕСЂР°РЅРґР¶Р°(РІ РїРѕРёСЃРєРµ РѕСЂР°РЅРґР¶Р°).
+	    (РќСѓР¶РЅРѕ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ Р°РґСЂРµСЃ c hlpdeska)
 
-Alt+r	    Отправка письма для использования программ удаленного доступа. 
-		(Предварительно надо скопировать номер заявки.)
+Alt+r	    РћС‚РїСЂР°РІРєР° РїРёСЃСЊРјР° РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РїСЂРѕРіСЂР°РјРј СѓРґР°Р»РµРЅРЅРѕРіРѕ РґРѕСЃС‚СѓРїР°. 
+		(РџСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕ РЅР°РґРѕ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ РЅРѕРјРµСЂ Р·Р°СЏРІРєРё.)
 		
-Alt+l	    Поиск в логах авторизации. Необходимо быть залогиненым на брабус. 
-		(Предварительно надо скопировать логин клиента.)
+Alt+l	    РџРѕРёСЃРє РІ Р»РѕРіР°С… Р°РІС‚РѕСЂРёР·Р°С†РёРё. РќРµРѕР±С…РѕРґРёРјРѕ Р±С‹С‚СЊ Р·Р°Р»РѕРіРёРЅРµРЅС‹Рј РЅР° Р±СЂР°Р±СѓСЃ. 
+		(РџСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕ РЅР°РґРѕ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ Р»РѕРіРёРЅ РєР»РёРµРЅС‚Р°.)
 		
-Alt+Enter	    В активном окне helpdesk, ums - добавление тега <br> в конце каждой строки
+Alt+Enter	    Р’ Р°РєС‚РёРІРЅРѕРј РѕРєРЅРµ helpdesk, ums - РґРѕР±Р°РІР»РµРЅРёРµ С‚РµРіР° <br> РІ РєРѕРЅС†Рµ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРё
 
 		
 
-	      Перед нажатием следующих комбинации необходимо скопировать ip адрес:
+	      РџРµСЂРµРґ РЅР°Р¶Р°С‚РёРµРј СЃР»РµРґСѓСЋС‰РёС… РєРѕРјР±РёРЅР°С†РёРё РЅРµРѕР±С…РѕРґРёРјРѕ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ ip Р°РґСЂРµСЃ:
 
-Alt+t	    Трассировка до узла
+Alt+t	    РўСЂР°СЃСЃРёСЂРѕРІРєР° РґРѕ СѓР·Р»Р°
 
-Alt+p	    Пинг до узла
+Alt+p	    РџРёРЅРі РґРѕ СѓР·Р»Р°
 
-F2	    Телнет к свитчам Совинтела(на 172..)
+F2	    РўРµР»РЅРµС‚ Рє СЃРІРёС‚С‡Р°Рј РЎРѕРІРёРЅС‚РµР»Р°(РЅР° 172..)
 
-F12	    Telnet к ткд, брасу и т.д.
+F12	    Telnet Рє С‚РєРґ, Р±СЂР°СЃСѓ Рё С‚.Рґ.
 
-F7	    Автозаполнение полей страницы создания ГП масштабом в дом, сегмент. 
-	    Необходимо поставить курсор на первое поле даты
+F7	    РђРІС‚РѕР·Р°РїРѕР»РЅРµРЅРёРµ РїРѕР»РµР№ СЃС‚СЂР°РЅРёС†С‹ СЃРѕР·РґР°РЅРёСЏ Р“Рџ РјР°СЃС€С‚Р°Р±РѕРј РІ РґРѕРј, СЃРµРіРјРµРЅС‚. 
+	    РќРµРѕР±С…РѕРґРёРјРѕ РїРѕСЃС‚Р°РІРёС‚СЊ РєСѓСЂСЃРѕСЂ РЅР° РїРµСЂРІРѕРµ РїРѕР»Рµ РґР°С‚С‹
 		
 )
 
 Hotkey, IfWinActive, Helpdesk Corbina telecom
 Hotkey, F7, MyL04
 Hotkey, ^Sc01F, MyL03
-Hotkey, !Sc01C , AnL35	;Enter в хелпдеске(добавление тега <br>)
+Hotkey, !Sc01C , AnL35	;Enter РІ С…РµР»РїРґРµСЃРєРµ(РґРѕР±Р°РІР»РµРЅРёРµ С‚РµРіР° <br>)
 
 
 Hotkey, IfWinActive, Utilization Management System
-Hotkey, !Sc01C , AnL35	;Enter в UMS(Добавление тега <br>)
+Hotkey, !Sc01C , AnL35	;Enter РІ UMS(Р”РѕР±Р°РІР»РµРЅРёРµ С‚РµРіР° <br>)
 
 Hotkey, IfWinActive, Hlpdesk HotKey
 Hotkey, F1, MyL02
 
-Hotkey,IfWinActive, Поиск (F3 - найти далее)
+Hotkey,IfWinActive, РџРѕРёСЃРє (F3 - РЅР°Р№С‚Рё РґР°Р»РµРµ)
 Hotkey, ^Sc02F, MyL21
 
 Hotkey, IfWinActive, ahk_class VanDyke Software - SecureCRT
@@ -146,8 +146,8 @@ return
 MenuHandler:
 Gui, 10:font,Normal s8, Verdana
 Gui, 10:Add, Text,x10 y10,Hlpdesk HotKey
-Gui, 10:Add, Text,, версия 3.16
-Gui, 10:Add, Text,, © Виталий Петров, Андрей Герасимович, 2012. Все права защищены.
+Gui, 10:Add, Text,, РІРµСЂСЃРёСЏ 3.16
+Gui, 10:Add, Text,, В© Р’РёС‚Р°Р»РёР№ РџРµС‚СЂРѕРІ, РђРЅРґСЂРµР№ Р“РµСЂР°СЃРёРјРѕРІРёС‡, 2012. Р’СЃРµ РїСЂР°РІР° Р·Р°С‰РёС‰РµРЅС‹.
 Gui, 10:Add, Picture, ym x+10 w100 h-1, smile.jpg
 Gui, 10:Add, Button, xm+150 ym+80  w60 Default, OK
 Gui, 10:Show, , Hlpdesk HotKey
@@ -166,11 +166,11 @@ Gui, 2:Destroy
 WinGetActiveTitle, OutputVar
 SendMessage, 0x50,, 0x4090409,, A
 Gui, 2:font,Normal s8, Verdana
-Menu, HelpMenu, Add, &Справка HotKey	F1, MyL02
-Menu, HelpMenu, Add, &О программе, MenuHandler
-Menu, MyMenuBar, Add, &Справка, :HelpMenu
+Menu, HelpMenu, Add, &РЎРїСЂР°РІРєР° HotKey	F1, MyL02
+Menu, HelpMenu, Add, &Рћ РїСЂРѕРіСЂР°РјРјРµ, MenuHandler
+Menu, MyMenuBar, Add, &РЎРїСЂР°РІРєР°, :HelpMenu
 Gui, 2:Menu, MyMenuBar
-Gui, 2:Add, Text,xm+50,Укажите номер порта:
+Gui, 2:Add, Text,xm+50,РЈРєР°Р¶РёС‚Рµ РЅРѕРјРµСЂ РїРѕСЂС‚Р°:
 Gui, 2:Add, Edit, w50 ym limit5 vinp_port
 Gui, 2:Add, Button, x20  w60 default, Dlink
 Gui, 2:Add, Button, x+20 w60 , Alcatel
@@ -284,7 +284,7 @@ return
 ;=======================================
 MyL02:
 gui, 6:font,Bold s8, Verdana
-Gui, 6:Add, Text,x170 y10,Горячие клавиши
+Gui, 6:Add, Text,x170 y10,Р“РѕСЂСЏС‡РёРµ РєР»Р°РІРёС€Рё
 gui, 6:font,Normal s8, Verdana
 Gui, 6:Add, Text,x10,%help%
 Gui, 6:Add, Button,  x240 y+10  w60 Default, OK
@@ -297,13 +297,13 @@ return
   Gui, 6:Destroy
 return
 ;=======================================
-;Запись в файл номера тикета и примечания к нему
+;Р—Р°РїРёСЃСЊ РІ С„Р°Р№Р» РЅРѕРјРµСЂР° С‚РёРєРµС‚Р° Рё РїСЂРёРјРµС‡Р°РЅРёСЏ Рє РЅРµРјСѓ
 MyL03:
   SetKeyDelay, ,100
  IniRead, FileHdOut, conf.ini, section_0, Save_TT
  if FileHdOut=ERROR
  {
-  TrayTip, ,Возникла проблема чтения файла конфигурации conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° РєРѕРЅС„РёРіСѓСЂР°С†РёРё conf.ini
   SetTimer, RemoveTrayTip, 1000
  }
   Send, ^{Home}
@@ -313,14 +313,14 @@ MyL03:
 
   if (Clipboard < 100000000) or (Clipboard > 999999999)
   {
-    TrayTip, ,Возникла ошибка копирования номера заявки
+    TrayTip, ,Р’РѕР·РЅРёРєР»Р° РѕС€РёР±РєР° РєРѕРїРёСЂРѕРІР°РЅРёСЏ РЅРѕРјРµСЂР° Р·Р°СЏРІРєРё
     SetTimer, RemoveTrayTip, 5000
     Sleep 1000
-    InputBox, Coment, Вставте номер заявки с коментарием:
+    InputBox, Coment, Р’СЃС‚Р°РІС‚Рµ РЅРѕРјРµСЂ Р·Р°СЏРІРєРё СЃ РєРѕРјРµРЅС‚Р°СЂРёРµРј:
     FileAppend, `n%Coment%, %FileHdOut%
     return
   }
-  InputBox, Coment, Примечание к заявке #%Clipboard%:
+  InputBox, Coment, РџСЂРёРјРµС‡Р°РЅРёРµ Рє Р·Р°СЏРІРєРµ #%Clipboard%:
   if ErrorLevel=1
     return
   Send ^{F4}
@@ -331,16 +331,16 @@ return
 MyL04:
 Gui, Menu, MyMenuBar
 Gui, font,Normal s8, Verdana
-Gui, Add, Text,, Выберите тип проблемы:
-Gui, Add, Button, x20 w60 default, Дом
-Gui, Add, Button, x+20 w60, Сегмент
+Gui, Add, Text,, Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї РїСЂРѕР±Р»РµРјС‹:
+Gui, Add, Button, x20 w60 default, Р”РѕРј
+Gui, Add, Button, x+20 w60, РЎРµРіРјРµРЅС‚
 Gui, Add, Button, x+40 w60, Cancel
-TrayTip, ` ` Необходимо:, 1. Открыть страницу создания ГП`n2. Поставить курсор на поле даты
+TrayTip, ` ` РќРµРѕР±С…РѕРґРёРјРѕ:, 1. РћС‚РєСЂС‹С‚СЊ СЃС‚СЂР°РЅРёС†Сѓ СЃРѕР·РґР°РЅРёСЏ Р“Рџ`n2. РџРѕСЃС‚Р°РІРёС‚СЊ РєСѓСЂСЃРѕСЂ РЅР° РїРѕР»Рµ РґР°С‚С‹
 SetTimer, RemoveTrayTip, 5000
 Gui, show, w270, Hlpdesk HotKey
 return
 
-ButtonДом:
+ButtonР”РѕРј:
   Gui, Submit
     WinActivate, Helpdesk Corbina telecom
     sleep 200
@@ -369,14 +369,14 @@ ButtonДом:
   FormatTime, CuDaTi,%CurrentDateTime%, mm
   SendInput, %CuDaTi%
   Send,  {Tab}
-  Send,  {Ctrldown}ф{Ctrldown}
+  Send,  {Ctrldown}С„{Ctrldown}
   Send, {Delete}
   Sleep 50
   IniRead, VarFind, conf.ini, section_4, dom
 
 if VarFind=ERROR
 {
-  TrayTip, ,Возникла проблема чтения файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   return
 }
@@ -384,13 +384,13 @@ if VarFind=ERROR
   StringReplace, VarFind, VarFind, VarIP, %Clipboard%, All
   SendInput {Raw}%VarFind%
   Send,  {Tab}
-  SendInput, а
+  SendInput, Р°
   Send,  {Tab}
-  SendInput, а
+  SendInput, Р°
   Send {Tab 2}
 return
 
-ButtonСегмент:
+ButtonРЎРµРіРјРµРЅС‚:
   Gui, Submit
     WinActivate, Helpdesk Corbina telecom
     sleep 200
@@ -419,11 +419,11 @@ ButtonСегмент:
   FormatTime, CuDaTi,%CurrentDateTime%, mm
   SendInput, %CuDaTi%
   Send,  {Tab}
-  Send,  {Ctrldown}ф{Ctrldown}
+  Send,  {Ctrldown}С„{Ctrldown}
   IniRead, VarFind, conf.ini, section_4, segment
 if VarFind=ERROR
 {
-  TrayTip, ,Возникла проблема чтения файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   return
 }
@@ -432,9 +432,9 @@ if VarFind=ERROR
   Sleep 100
   SendInput {Raw}%VarFind%
   Send,  {Tab}
-  SendInput, а
+  SendInput, Р°
   Send,  {Tab}
-  SendInput, а
+  SendInput, Р°
   Send,  {Tab 2}
 return
 
@@ -468,39 +468,39 @@ FileReadLine, line3, %FileIn%, 4
 FileReadLine, line4, %FileIn%, 5
 FileReadLine, line5, %FileIn%, 6
 
-StringReplace, line3, line3, д.,,
+StringReplace, line3, line3, Рґ.,,
 if ErrorLevel=0
 {
  GoSub MyL211
  StringReplace, line2, line2, %A_SPACE%,,
  StringReplace, line4, line4, %A_SPACE%,,
  
- StringGetPos, OutputVar, line4, кв
- ;Проверка - есть ли в линии квартира
+ StringGetPos, OutputVar, line4, РєРІ
+ ;РџСЂРѕРІРµСЂРєР° - РµСЃС‚СЊ Р»Рё РІ Р»РёРЅРёРё РєРІР°СЂС‚РёСЂР°
  if errorlevel=0
- ;Если она есть, то линия отбрасывается
+ ;Р•СЃР»Рё РѕРЅР° РµСЃС‚СЊ, С‚Рѕ Р»РёРЅРёСЏ РѕС‚Р±СЂР°СЃС‹РІР°РµС‚СЃСЏ
  {
  line4=
  }
  else
  {
- StringReplace, line4, line4, к, корп.` ,
+ StringReplace, line4, line4, Рє, РєРѕСЂРї.` ,
  }
 }
 else
 {
-  StringReplace, line4, line4, д.,,
+  StringReplace, line4, line4, Рґ.,,
   StringReplace, line5, line5, %A_SPACE%,,
-  StringGetPos, OutputVar, line5, кв
-  ;Проверка - есть ли в линии квартира
+  StringGetPos, OutputVar, line5, РєРІ
+  ;РџСЂРѕРІРµСЂРєР° - РµСЃС‚СЊ Р»Рё РІ Р»РёРЅРёРё РєРІР°СЂС‚РёСЂР°
   if errorlevel=0
-  ;Если она есть, то линия отбрасывается
+  ;Р•СЃР»Рё РѕРЅР° РµСЃС‚СЊ, С‚Рѕ Р»РёРЅРёСЏ РѕС‚Р±СЂР°СЃС‹РІР°РµС‚СЃСЏ
   {
   line5=
   }
   else
   {
-  StringReplace, line5, line5, к,корп.` ,
+  StringReplace, line5, line5, Рє,РєРѕСЂРї.` ,
   }
   if ErrorLevel=0
   {
@@ -532,37 +532,37 @@ IfExist, test1.txt
 return
 
 MyL211:
-StringReplace, line2, line2, улица,,
+StringReplace, line2, line2, СѓР»РёС†Р°,,
 if ErrorLevel=0
-  line21=улица
+  line21=СѓР»РёС†Р°
 
-StringReplace, line2, line2, бульвар,,
+StringReplace, line2, line2, Р±СѓР»СЊРІР°СЂ,,
 if ErrorLevel=0
- line21=бульвар
+ line21=Р±СѓР»СЊРІР°СЂ
 
-StringReplace, line2, line2, проспект,,
+StringReplace, line2, line2, РїСЂРѕСЃРїРµРєС‚,,
 if ErrorLevel=0
- line21=проспект
+ line21=РїСЂРѕСЃРїРµРєС‚
 
-StringReplace, line2, line2, переулок,,
+StringReplace, line2, line2, РїРµСЂРµСѓР»РѕРє,,
 if ErrorLevel=0
- line21=переулок
+ line21=РїРµСЂРµСѓР»РѕРє
 
-StringReplace, line2, line2, набережная,,
+StringReplace, line2, line2, РЅР°Р±РµСЂРµР¶РЅР°СЏ,,
 if ErrorLevel=0
- line21=набережная
+ line21=РЅР°Р±РµСЂРµР¶РЅР°СЏ
 
-StringReplace, line2, line2, площадь,,
+StringReplace, line2, line2, РїР»РѕС‰Р°РґСЊ,,
 if ErrorLevel=0
- line21=площадь
+ line21=РїР»РѕС‰Р°РґСЊ
 
-StringReplace, line2, line2, проезд,,
+StringReplace, line2, line2, РїСЂРѕРµР·Рґ,,
 if ErrorLevel=0
- line21=проезд
+ line21=РїСЂРѕРµР·Рґ
 return
 
 MyL212:
-IfWinActive Поиск (F3 - найти далее)
+IfWinActive РџРѕРёСЃРє (F3 - РЅР°Р№С‚Рё РґР°Р»РµРµ)
  {
   SendMessage, 0x50,, 0x4190419,, %A_ScriptFullPath%
   Clipboard=%line1%` %line2%` %line3%` %line4%
@@ -581,13 +581,13 @@ IniRead, hd_tt, conf.ini, section_0, Ticket
 sleep 100
 if hd_tt=ERROR
 {
- TrayTip, ,Возникла проблема чтения файла конфигурации conf.ini
+ TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° РєРѕРЅС„РёРіСѓСЂР°С†РёРё conf.ini
  SetTimer, RemoveTrayTip, 10000
 }
 Gui, 3:Destroy
 Gui, 3:font,Normal s8, Verdana
 Gui, 3:Menu, MyMenuBar
-Gui, 3:Add, Text,, Введите номер заявки:
+Gui, 3:Add, Text,, Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·Р°СЏРІРєРё:
 Gui, 3:Add, Edit, w90 ym number limit9 vUserInput, %hd_tt%
 Gui, 3:Add, Button, x100  w60 Default, OK
 Gui, 3:Add, Button, x+40   w60, Cancel
@@ -607,18 +607,18 @@ if (UserInput > 100000000) and (UserInput < 999999999)
   IniRead, VarFind, conf.ini, section_0, finding
 if VarFind=ERROR
 {
-  TrayTip, ,Возникла проблема чтения файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
 }
   sleep 500
   SendMessage, 0x50,, 0x4190419,, Helpdesk Corbina telecom
-  Send ^а
+  Send ^Р°
   SendInput %VarFind%
   Send {Enter}
  IniRead, file, conf.ini, section_0, Logs_TT
  if FileHdOut=ERROR
  {
-  TrayTip, ,Возникла проблема чтения файла конфигурации conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° РєРѕРЅС„РёРіСѓСЂР°С†РёРё conf.ini
   SetTimer, RemoveTrayTip, 500
  }
 
@@ -645,7 +645,7 @@ SetKeyDelay, ,50
 SetWinDelay, 100
 if var=1
 {
-MsgBox, 4,, Продолжить?
+MsgBox, 4,, РџСЂРѕРґРѕР»Р¶РёС‚СЊ?
 IfMsgBox, Yes
 {
   GoSub MyL40
@@ -660,15 +660,15 @@ default=0
 Gui, 4:Destroy
 Gui, 4:font,Normal s8, Verdana
 Gui, 4:Menu, MyMenuBar2
-Gui, 4:Add, Text,, Введите список заявок:
+Gui, 4:Add, Text,, Р’РІРµРґРёС‚Рµ СЃРїРёСЃРѕРє Р·Р°СЏРІРѕРє:
 Gui, 4:Add, Edit, w100 r20 ym number vUserInput, %EditControl%
 Gui, 4:Add, Button, x110  w60 Default, OK
 Gui, 4:Add, Button, x+30 w60, Cancel
-Gui, 4:Show, , Hlpdesk HotKey	;Русская буква е в словек kеy
+Gui, 4:Show, , Hlpdesk HotKey	;Р СѓСЃСЃРєР°СЏ Р±СѓРєРІР° Рµ РІ СЃР»РѕРІРµРє kРµy
 return
 
 FileOpen:
-FileSelectFile, c3,, %A_WorkingDir%, Укажите файл с заявками, *.txt
+FileSelectFile, c3,, %A_WorkingDir%, РЈРєР°Р¶РёС‚Рµ С„Р°Р№Р» СЃ Р·Р°СЏРІРєР°РјРё, *.txt
 if ErrorLevel=1
   return
 FileRead, FileContents, %c3%
@@ -697,12 +697,12 @@ IniRead, NoTT, conf.ini, section_0, NofTab
 sleep 100
 if NoTT=ERROR
 {
- TrayTip, ,Возникла проблема чтения файла конфигурации conf.ini
+ TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° РєРѕРЅС„РёРіСѓСЂР°С†РёРё conf.ini
  SetTimer, RemoveTrayTip, 1000
 }
 var=1
 
-TrayTip, ,Дождитесь завершения работы скрипта`, будет открыто %NoTT% заявок
+TrayTip, ,Р”РѕР¶РґРёС‚РµСЃСЊ Р·Р°РІРµСЂС€РµРЅРёСЏ СЂР°Р±РѕС‚С‹ СЃРєСЂРёРїС‚Р°`, Р±СѓРґРµС‚ РѕС‚РєСЂС‹С‚Рѕ %NoTT% Р·Р°СЏРІРѕРє
 SetTimer, RemoveTrayTip, 10000
 
 Loop
@@ -714,14 +714,14 @@ Loop
   if ErrorLevel
   {
     default=%varid%
-    TrayTip, ,Возникла проблема чтения
+    TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ
     SetTimer, RemoveTrayTip, 3000
     break
   }
   if (line < 100000000) or (line > 999999999)
   {
     default=%varid%
-    TrayTip, ,Возникла проблема чтения No
+    TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ No
     SetTimer, RemoveTrayTip, 3000
     break
   }
@@ -740,10 +740,10 @@ Loop
     IniRead, VarFind, conf.ini, section_0, finding
  if VarFind=ERROR
  {
-   TrayTip, ,Возникла проблема чтения файла conf.ini
+   TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° conf.ini
    SetTimer, RemoveTrayTip, 500
  }
-    Send ^а
+    Send ^Р°
     SendInput %VarFind%
     Send {Enter}
     var-=2
@@ -751,7 +751,7 @@ Loop
     {
 	Send ^+{Tab}
 	WinWaitActive, Helpdesk Corbina telecom,,5
-	Send ^а
+	Send ^Р°
 	Send {Enter}
     }
     var=1
@@ -767,20 +767,20 @@ SendMessage, 0x50,, 0x4190419,, A
 IniRead, VarFind, conf.ini, section_0, finding
 if VarFind=ERROR
 {
-  TrayTip, ,Возникла проблема чтения файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 2000
 }
 var-=1
 loop %var%
 {
 	WinWaitActive, Helpdesk Corbina telecom,,5
-	Send ^а
+	Send ^Р°
 	SendInput %VarFind%
 	Send {Enter}
 	Send ^+{Tab}
 }
 Send ^{Tab}
-MsgBox, Достигнут конец файла
+MsgBox, Р”РѕСЃС‚РёРіРЅСѓС‚ РєРѕРЅРµС† С„Р°Р№Р»Р°
 default=0
 var=0
 Return
@@ -805,31 +805,31 @@ return
 AnL20:
   Run, http://post.ru
   sleep 200
-  WinWait, Вход в post.ru
+  WinWait, Р’С…РѕРґ РІ post.ru
 AnL21:
   IniRead, Login, conf.ini, section_3.post, login
   IniRead, Password, conf.ini, section_3.post, pass
 if Login=ERROR
 {
-  TrayTip, ,Возникла проблема чтения файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   return
 }
 if Password=ERROR
 {
-  TrayTip, ,Возникла проблема чтения файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   return
 }
 if Login=
 {
-  TrayTip, ,Возникла проблема чтения логина из файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ Р»РѕРіРёРЅР° РёР· С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   return
 }
 if Password=
 {
-  TrayTip, ,Возникла проблема чтения пароля из файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ РїР°СЂРѕР»СЏ РёР· С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   return
 }
@@ -897,25 +897,25 @@ MyL30:
 vError=0
 if Login=ERROR
 {
-  TrayTip, ,Возникла проблема чтения файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   vError=1
 }
 if Password=ERROR
 {
-  TrayTip, ,Возникла проблема чтения файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   vError=1
 }
 if Login=
 {
-  TrayTip, ,Возникла проблема чтения логина из файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ Р»РѕРіРёРЅР° РёР· С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   vError=1
 }
 if Password=
 {
-  TrayTip, ,Возникла проблема чтения пароля из файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ РїР°СЂРѕР»СЏ РёР· С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   vError=1
 }
@@ -936,25 +936,25 @@ return
 MyL31:
 if Login=ERROR
 {
-  TrayTip, ,Возникла проблема чтения файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   return
 }
 if Password=ERROR
 {
-  TrayTip, ,Возникла проблема чтения файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   return
 }
 if Login=
 {
-  TrayTip, ,Возникла проблема чтения логина из файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ Р»РѕРіРёРЅР° РёР· С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   return
 }
 if Password=
 {
-  TrayTip, ,Возникла проблема чтения пароля из файла conf.ini
+  TrayTip, ,Р’РѕР·РЅРёРєР»Р° РїСЂРѕР±Р»РµРјР° С‡С‚РµРЅРёСЏ РїР°СЂРѕР»СЏ РёР· С„Р°Р№Р»Р° conf.ini
   SetTimer, RemoveTrayTip, 5000
   return
 }
@@ -962,7 +962,7 @@ if Password=
   StringReplace, Town, Town%j%, %A_Tab%,,
   SendMessage, 0x50,, 0x4090409,, A
   sleep 1500
-  if Town=Белгород
+  if Town=Р‘РµР»РіРѕСЂРѕРґ
   {
   Sendinput  manager
   Send {Enter}
@@ -973,9 +973,9 @@ if Password=
   else
   {
   Sendinput  %Login%
-  If Town=Красноярск
+  If Town=РљСЂР°СЃРЅРѕСЏСЂСЃРє
     Sendinput  @krsk
-  If Town=Нижний Новгород
+  If Town=РќРёР¶РЅРёР№ РќРѕРІРіРѕСЂРѕРґ
     Sendinput  @nizhny_hn
   Send {Enter}
   Sendinput  {Raw}%Password%
@@ -1003,9 +1003,9 @@ loop
 
 Gui, 9:Destroy
 Gui, 9:font,Normal s8, Verdana
-Menu, MyMenuBar, Add, &Справка, :HelpMenu
+Menu, MyMenuBar, Add, &РЎРїСЂР°РІРєР°, :HelpMenu
 Gui, 9:Menu, MyMenuBar
-Gui, 9:Add, Text,, Выберите город:
+Gui, 9:Add, Text,, Р’С‹Р±РµСЂРёС‚Рµ РіРѕСЂРѕРґ:
 Gui, 9:Add, ListBox, vMyListBox2 gMyListBox2 ym w180 r27
 Gui, 9:Add, Button, Default x110 w60, OK
 Gui, 9:Add, Button, x+30 w60, Cancell
@@ -1056,7 +1056,7 @@ loop %NoCycle%
   StringReplace, Clipboard, Clipboard, %A_Tab%, , All
   sleep 500
   StringReplace, Town, Town%j%, %A_Tab%,,
-  if Town=Тюмень
+  if Town=РўСЋРјРµРЅСЊ
   {
   IniRead, Login, conf.ini, section_1.dlink, login
   IniRead, Password, conf.ini, section_1.dlink, pass
@@ -1165,7 +1165,7 @@ loop 26
 
 
 Gui, 5:font,Normal s8, Verdana
-Gui, 5:Add, Tab,-Wrap w550 h450, Основные|Тексты|CLI|Брасы Совинтела 1|Брасы Совинтела 2
+Gui, 5:Add, Tab,-Wrap w550 h450, РћСЃРЅРѕРІРЅС‹Рµ|РўРµРєСЃС‚С‹|CLI|Р‘СЂР°СЃС‹ РЎРѕРІРёРЅС‚РµР»Р° 1|Р‘СЂР°СЃС‹ РЎРѕРІРёРЅС‚РµР»Р° 2
 Gui, 5:Tab, 1
 Gui, 5:Add, Text, section,
 Gui, 5:Add, Text,, Login:
@@ -1191,10 +1191,10 @@ Gui, 5:Add, Edit, r1 password w100 vs8k3,%s8k3%
 Gui, 5:Add, Edit, r1 y+10 password w100 vs8k2,%s8k2%
 Gui, 5:Add, Edit, r1 y+10 w100 vs0k6,%s0k6%
 
-Gui, 5:Add, Text, y+46 xm+10 section, Кол-во вкладок:
-Gui, 5:Add, Text,, Слово для поиска:
-Gui, 5:Add, Text,, Файл для логов:
-Gui, 5:Add, Text,, Файл для сейвов:
+Gui, 5:Add, Text, y+46 xm+10 section, РљРѕР»-РІРѕ РІРєР»Р°РґРѕРє:
+Gui, 5:Add, Text,, РЎР»РѕРІРѕ РґР»СЏ РїРѕРёСЃРєР°:
+Gui, 5:Add, Text,, Р¤Р°Р№Р» РґР»СЏ Р»РѕРіРѕРІ:
+Gui, 5:Add, Text,, Р¤Р°Р№Р» РґР»СЏ СЃРµР№РІРѕРІ:
 
 Gui, 5:Add, Edit, r1 w160 ys vs0k5,%s0k5%
 Gui, 5:Add, Edit, r1 w160 vs0k2,%s0k2%
@@ -1207,14 +1207,14 @@ Gui, 5:Add, Button, ys w60  x+20 Default, Open
 
 Gui, 5:Add, Text,y+12 xm+10 , Putty:
 Gui, 5:Add, Edit, section r1 w400 vs0k7,%s0k7%
-Gui, 5:Add, Button, ys w60  x+20, Opеn
+Gui, 5:Add, Button, ys w60  x+20, OpРµn
 
 Gui, 5:Tab, 2
-Gui, 5:Add, Text,Bold cBlue, ГП на дом:
+Gui, 5:Add, Text,Bold cBlue, Р“Рџ РЅР° РґРѕРј:
 Gui, 5:Add, Edit, r4 w500 vs4k1,%s4k1%
-Gui, 5:Add, Text,Bold cBlue, ГП на сегмент:
+Gui, 5:Add, Text,Bold cBlue, Р“Рџ РЅР° СЃРµРіРјРµРЅС‚:
 Gui, 5:Add, Edit, r4 w500 vs4k2,%s4k2%
-Gui, 5:Add, Text,Bold cBlue, Письмо на удалённый доступ:
+Gui, 5:Add, Text,Bold cBlue, РџРёСЃСЊРјРѕ РЅР° СѓРґР°Р»С‘РЅРЅС‹Р№ РґРѕСЃС‚СѓРї:
 Gui, 5:Add, Edit, r4 w500 vs0k8,%s0k8%
 
 Gui, 5:Tab, 3
@@ -1245,14 +1245,14 @@ Gui, 5:Add, Edit, r1 w280 vs5a10,%s5a10%
 
 
 Gui, 5:Tab, 4
-Gui, 5:Add, Text, ys x+30 cBlue, Город:
+Gui, 5:Add, Text, ys x+30 cBlue, Р“РѕСЂРѕРґ:
 j=1
 loop 13 {
  Gui, 5:Add, Edit, r1 w180 vTown%j%,
  j++
 }
 
-Gui, 5:Add, Text, ys x+30 cBlue, Адрес:
+Gui, 5:Add, Text, ys x+30 cBlue, РђРґСЂРµСЃ:
 j=1
 loop 13 {
  Gui, 5:Add, Edit, r1 w280 vAddress%j%,
@@ -1261,13 +1261,13 @@ loop 13 {
 
 j=14
 Gui, 5:Tab, 5
-Gui, 5:Add, Text, ys x+30 cBlue, Город:
+Gui, 5:Add, Text, ys x+30 cBlue, Р“РѕСЂРѕРґ:
 loop 13 {
  Gui, 5:Add, Edit, r1 w180 vTown%j%,
  j++
 }
 
-Gui, 5:Add, Text, ys x+30 cBlue, Адрес:
+Gui, 5:Add, Text, ys x+30 cBlue, РђРґСЂРµСЃ:
 j=14
 loop 13 {
  Gui, 5:Add, Edit, r1 w280 vAddress%j%,
@@ -1294,14 +1294,14 @@ return
 
 
 5ButtonOpen:
-FileSelectFile, VarSecure,, %A_WorkingDir%, Укажите файл CRT, *.exe
+FileSelectFile, VarSecure,, %A_WorkingDir%, РЈРєР°Р¶РёС‚Рµ С„Р°Р№Р» CRT, *.exe
 if ErrorLevel=1
   return
 GuiControl,, s0k0, %VarSecure%
 return
 
-5ButtonOpеn:
-FileSelectFile, VarSecure,, %A_WorkingDir%, Укажите файл Putty, *.exe
+5ButtonOpРµn:
+FileSelectFile, VarSecure,, %A_WorkingDir%, РЈРєР°Р¶РёС‚Рµ С„Р°Р№Р» Putty, *.exe
 if ErrorLevel=1
   return
 GuiControl,, s0k7, %VarSecure%
@@ -1398,7 +1398,7 @@ SetTimer, RemoveTrayTip, 10000
 return
 
 ;=======================================
-;Вход на брабус
+;Р’С…РѕРґ РЅР° Р±СЂР°Р±СѓСЃ
 
 !b::
 IniRead, brabuslogin, conf.ini, section_8.brabus, login
@@ -1445,17 +1445,17 @@ Run, %client% /ssh2 gvj.corbina.net
 return
 
 ;======================================================================
-;========Отправка письма
+;========РћС‚РїСЂР°РІРєР° РїРёСЃСЊРјР°
 !r::
 IniRead, mailtext, conf.ini, section_0, mailtext
 IniRead, sit, conf.ini, section_0, sit, 00
 Gui, 11:Destroy
 Gui, 11:Menu, MyMenuBar
 Gui, 11:font,Normal s8, Verdana
-Gui, 11:Add, Text,,  Место:
+Gui, 11:Add, Text,,  РњРµСЃС‚Рѕ:
 Gui, 11:Add, Edit, ys vsit, %sit%
 Gui, 11:Add, Button, x20 w60 default, Ok
-TrayTip, ` ` Необходимо:, 1. Скопировать в буфер обмена номер заявки`n2. Введите номер вашего места `n3. Откройте новое письмо на post.ru и вставьте курсор на поле "Кому"`n4. После того как письмо будет готово, нажмите "Отправить"
+TrayTip, ` ` РќРµРѕР±С…РѕРґРёРјРѕ:, 1. РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РІ Р±СѓС„РµСЂ РѕР±РјРµРЅР° РЅРѕРјРµСЂ Р·Р°СЏРІРєРё`n2. Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РІР°С€РµРіРѕ РјРµСЃС‚Р° `n3. РћС‚РєСЂРѕР№С‚Рµ РЅРѕРІРѕРµ РїРёСЃСЊРјРѕ РЅР° post.ru Рё РІСЃС‚Р°РІСЊС‚Рµ РєСѓСЂСЃРѕСЂ РЅР° РїРѕР»Рµ "РљРѕРјСѓ"`n4. РџРѕСЃР»Рµ С‚РѕРіРѕ РєР°Рє РїРёСЃСЊРјРѕ Р±СѓРґРµС‚ РіРѕС‚РѕРІРѕ, РЅР°Р¶РјРёС‚Рµ "РћС‚РїСЂР°РІРёС‚СЊ"
 SetTimer, RemoveTrayTip, 5000
 Gui, 11:show, w270, Hlpdesk HotKey
 return
@@ -1489,18 +1489,18 @@ Gui, Destroy
 Return
 
 ;=================================================================
-;===============Поиск в логах авторизации
+;===============РџРѕРёСЃРє РІ Р»РѕРіР°С… Р°РІС‚РѕСЂРёР·Р°С†РёРё
 !l::
 
 IniRead, isputty, conf.ini, section_0, putty
-TrayTip, ` ` Необходимо:, Скопировать в буфер обмена логин клиента
+TrayTip, ` ` РќРµРѕР±С…РѕРґРёРјРѕ:, РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РІ Р±СѓС„РµСЂ РѕР±РјРµРЅР° Р»РѕРіРёРЅ РєР»РёРµРЅС‚Р°
 sleep 100
 Gui, 7:Destroy
 Gui, 7:font,Normal s8, Verdana
 Gui, 7:Menu, MyMenuBar
-Gui, 7:Add, Text,, Выберите город
-Gui, 7:Add, Button, x20  w60 , МСК
-Gui, 7:Add, Button, x+40   w60 Default, РЕГ
+Gui, 7:Add, Text,, Р’С‹Р±РµСЂРёС‚Рµ РіРѕСЂРѕРґ
+Gui, 7:Add, Button, x20  w60 , РњРЎРљ
+Gui, 7:Add, Button, x+40   w60 Default, Р Р•Р“
 Gui, 7:show, w270, Hlpdesk HotKey
 return
 
@@ -1510,14 +1510,14 @@ return
   Gui, 7:Destroy
 return
 
-7ButtonМСК:
+7ButtonРњРЎРљ:
   Gui, Submit
   patchlog=tail -f /var/log/aaa/msk*.log | grep
   Gui, Destroy
   GoSub AnL33
   return
   
-7ButtonРЕГ:
+7ButtonР Р•Р“:
   Gui, Submit
   patchlog=tail -f /var/log/aaa/reg*.log | grep
   Gui, Destroy
@@ -1556,25 +1556,25 @@ WinWaitActive, ahk_class PuTTY,
  return
  
  ;==================================================================
- ;<br> в хелпдеске, ums
+ ;<br> РІ С…РµР»РїРґРµСЃРєРµ, ums
  AnL35:
  SendMessage, 0x50,, 0x4190419,, A
  Send, ^{Sc01E}
  
- ClipSaved := ClipboardAll ; Сохраняет клипборд полностью в указанной переменной.
-    ; ... здесь можно временно использовать клипборд, например,
-    ; для сохранения текста Unicode с помощью Transform Unicode...
+ ClipSaved := ClipboardAll ; РЎРѕС…СЂР°РЅСЏРµС‚ РєР»РёРїР±РѕСЂРґ РїРѕР»РЅРѕСЃС‚СЊСЋ РІ СѓРєР°Р·Р°РЅРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№.
+    ; ... Р·РґРµСЃСЊ РјРѕР¶РЅРѕ РІСЂРµРјРµРЅРЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєР»РёРїР±РѕСЂРґ, РЅР°РїСЂРёРјРµСЂ,
+    ; РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ С‚РµРєСЃС‚Р° Unicode СЃ РїРѕРјРѕС‰СЊСЋ Transform Unicode...
 	
  ;temp = %ClipboardAll%
- ;Чтобы не потерять содержимое буфера
+ ;Р§С‚РѕР±С‹ РЅРµ РїРѕС‚РµСЂСЏС‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ Р±СѓС„РµСЂР°
  Send, ^{Sc02E}
  StringReplace, clipboard, clipboard, `r`n, <br>`n,All
  StringReplace, clipboard, clipboard, <br><br>, <br>,All
  Sendinput, %clipboard%
  
-Clipboard := ClipSaved ; Восстанавливает клипборд.
-    ; Заметьте - использован Clipboard (а не ClipboardAll).
-ClipSaved = ; Освобождает память, когда клипборд громоздок.
+Clipboard := ClipSaved ; Р’РѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РєР»РёРїР±РѕСЂРґ.
+    ; Р—Р°РјРµС‚СЊС‚Рµ - РёСЃРїРѕР»СЊР·РѕРІР°РЅ Clipboard (Р° РЅРµ ClipboardAll).
+ClipSaved = ; РћСЃРІРѕР±РѕР¶РґР°РµС‚ РїР°РјСЏС‚СЊ, РєРѕРіРґР° РєР»РёРїР±РѕСЂРґ РіСЂРѕРјРѕР·РґРѕРє.
 
  ;ClipboardAll=%temp%
  SendInput, ^{end}
@@ -1583,9 +1583,9 @@ ClipSaved = ; Освобождает память, когда клипборд громоздок.
  return
  
  ;===================================================================
-  ;Тесты
-   ;Тесты
- ;Тесты
+  ;РўРµСЃС‚С‹
+   ;РўРµСЃС‚С‹
+ ;РўРµСЃС‚С‹
  ;!e::
  ;sendinput, show lldp remote_ports 25-26 mode detailed
  ;send, {enter}
